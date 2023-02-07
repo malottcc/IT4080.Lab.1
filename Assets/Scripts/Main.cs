@@ -11,7 +11,8 @@ public class Main : NetworkBehaviour
 
     public It4080.NetworkSettings netSettings;
 
-    // Start is called before the first frame update ---------------
+    // ------------------------------------------------
+    // Start is called before the first frame update 
     void Start()
     {
         netSettings.startServer += NetSettingsOnServerStart;
@@ -26,10 +27,11 @@ public class Main : NetworkBehaviour
         utp.ConnectionData.Port = port;
 
         NetworkManager.Singleton.StartClient();
-        netSettings.hide();
-        Debug.Log("start client");
-
+        //netSettings.hide();
+        Debug.Log("started client");
     }
+
+    
 
     private void StartHost(IPAddress ip, ushort port)
     {
@@ -37,11 +39,13 @@ public class Main : NetworkBehaviour
         utp.ConnectionData.Address = ip.ToString();
         utp.ConnectionData.Port = port;
 
+        NetworkManager.Singleton.OnClientConnectedCallback += HostOnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += HostOnClientDisconnected;
+
+
         NetworkManager.Singleton.StartHost();
-        netSettings.hide();
-        Debug.Log("start client");
-
-
+        //netSettings.hide();
+        Debug.Log("started host");
     }
 
     private void StartServer(IPAddress ip, ushort port)
@@ -50,28 +54,61 @@ public class Main : NetworkBehaviour
         utp.ConnectionData.Address = ip.ToString();
         utp.ConnectionData.Port = port;
 
+        NetworkManager.Singleton.OnClientConnectedCallback += HostOnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += HostOnClientDisconnected;
+
+
         NetworkManager.Singleton.StartServer();
-        netSettings.hide();
-        Debug.Log("start client");
+        //netSettings.hide();
+        Debug.Log("started server");
     }
 
 
 
-    //Events ---------------
+
+
+    //-----------------------
+    //Events 
+
+
+    private void HostOnClientConnected(ulong clientID)
+    {
+        Debug.Log($"client connected to me: {clientID}");
+    }
+
+    private void HostOnClientDisconnected(ulong clientID)
+    {
+        Debug.Log($"client disconnected from me: {clientID}");
+    }
+
+
+
+    private void ClientOnClientConnected(ulong clientID)
+    {
+
+    }
+
+    private void ClientOnClientDisconnected(ulong clientID)
+    {
+ 
+    }
+
+
+
 
     private void NetSettingsOnServerStart(IPAddress ip, ushort port)
     {
-        Debug.Log("start server");
+       StartServer(ip, port);
     }
 
     private void NetSettingsOnHostStart(IPAddress ip, ushort port)
     {
-        Debug.Log("start host");
+       StartHost(ip, port);
     }
 
     private void NetSettingsOnClientStart(IPAddress ip, ushort port)
     {
-        StartClient(ip, port);
+       StartClient(ip, port);
     }
 
 
