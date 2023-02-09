@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net;
@@ -28,7 +28,7 @@ public class Main : NetworkBehaviour
         utp.ConnectionData.Port = port;
 
         NetworkManager.Singleton.StartClient();
-        //netSettings.hide();
+        netSettings.hide();
         Debug.Log("started client");
     }
 
