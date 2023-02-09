@@ -13,6 +13,8 @@ public class Main : NetworkBehaviour
 
     public It4080.Chat chat;
 
+    public ChatServer chatServer;
+
 
     // ------------------------------------------------
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class Main : NetworkBehaviour
     void Start()
     {
         chat.SystemMessage("Hellow Stupid");
+
         netSettings.startServer += NetSettingsOnServerStart;
         netSettings.startHost += NetSettingsOnHostStart;
         netSettings.startClient += NetSettingsOnClientStart;
