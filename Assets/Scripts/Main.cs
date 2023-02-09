@@ -12,7 +12,8 @@ public class Main : NetworkBehaviour
     public It4080.NetworkSettings netSettings;
 
     // ------------------------------------------------
-    // Start is called before the first frame update 
+    // Start is called before the first frame update
+
     void Start()
     {
         netSettings.startServer += NetSettingsOnServerStart;
