@@ -7,6 +7,7 @@ using System;
 using System.Net;
 
 namespace It4080 { 
+
     public class Chat : NetworkBehaviour
     {
         public const string MSG_SYSTEM = "SYSTEM";
