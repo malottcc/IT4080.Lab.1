@@ -11,26 +11,6 @@ namespace It4080 {
     public class Chat : NetworkBehaviour
     { 
 
-
-
-    //-----------------------
-    //RPS's 
-        [ClientRpc]
-        public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
-        {
-            Debug.Log(message);
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void SendChatMessageServerRpc(string message, ServerRpcParams serverRpcParams = default)
-        {
-            Debug.Log($"Host got message: {message}");
-        }
-
-    //----------------------
-
-
-
         public const string MSG_SYSTEM = "SYSTEM";
 
         public class ChatMessage
@@ -57,9 +37,11 @@ namespace It4080 {
 
 
         public override void OnNetworkSpawn() {
+            
             base.OnNetworkSpawn();
             enabled = true;
             SystemMessage("OnNetworkSpawn");
+            txtChatLog.text = "-- Start Chat Log --";
             clientId = NetworkManager.Singleton.LocalClientId;
 
             if (IsHost)
