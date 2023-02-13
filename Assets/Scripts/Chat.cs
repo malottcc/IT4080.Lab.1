@@ -10,6 +10,28 @@ namespace It4080 {
 
     public class Chat : NetworkBehaviour
     {
+
+        //Test
+
+     
+
+        [ClientRpc]
+        public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
+        {
+            Debug.Log(message);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SendChatMessageServerRpc(string message, ServerRpcParams serverRpcParams = default)
+        {
+            Debug.Log($"Host got message: {message}");
+        }
+
+
+
+
+
+
         public const string MSG_SYSTEM = "SYSTEM";
 
         public class ChatMessage
@@ -40,6 +62,15 @@ namespace It4080 {
             enabled = true;
             SystemMessage("OnNetworkSpawn");
             clientId = NetworkManager.Singleton.LocalClientId;
+
+            if (IsHost)
+            {
+                SendChatMessageClientRpc("I am the host, Whoop Whoop!");
+            }
+            else
+            {
+                SendChatMessageServerRpc("I am a client, Yay!");
+            }
         }
 
 
