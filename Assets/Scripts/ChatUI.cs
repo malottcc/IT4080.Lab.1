@@ -21,7 +21,6 @@ public class ChatUI : NetworkBehaviour
         }
     }
 
-
     [ClientRpc]
     public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
     {
