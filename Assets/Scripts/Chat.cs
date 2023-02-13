@@ -9,12 +9,12 @@ using System.Net;
 namespace It4080 { 
 
     public class Chat : NetworkBehaviour
-    {
+    { 
 
-        //Test
 
-     
 
+    //-----------------------
+    //RPS's 
         [ClientRpc]
         public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
         {
@@ -27,8 +27,7 @@ namespace It4080 {
             Debug.Log($"Host got message: {message}");
         }
 
-
-
+    //----------------------
 
 
 
