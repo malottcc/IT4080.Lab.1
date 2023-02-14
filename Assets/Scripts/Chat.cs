@@ -43,15 +43,6 @@ namespace It4080 {
             SystemMessage("OnNetworkSpawn");
             txtChatLog.text = "-- Start Chat Log --";
             clientId = NetworkManager.Singleton.LocalClientId;
-
-            if (IsHost)
-            {
-                SendChatMessageClientRpc("I am the host, Whoop Whoop!");
-            }
-            else
-            {
-                SendChatMessageServerRpc("I am a client, Yay!");
-            }
         }
 
 

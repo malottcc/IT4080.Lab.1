@@ -310,6 +310,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &147475583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3617545498784692958, guid: c76a5081fcdbb4652a83a5e3d40a0832, type: 3}
+  m_PrefabInstance: {fileID: 1634311139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &221842990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,9 +1327,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2489633284648578384, guid: c76a5081fcdbb4652a83a5e3d40a0832, type: 3}
   m_PrefabInstance: {fileID: 1634311139}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 147475583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3a06905e12e7402ab345f02dd2c6c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1910498259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147475583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd8c5a3080a1454db31f4b73f031a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtChatLog: {fileID: 0}
+  btnSend: {fileID: 0}
+  inputMessage: {fileID: 0}

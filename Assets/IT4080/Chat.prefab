@@ -1374,6 +1374,7 @@ GameObject:
   - component: {fileID: 7971441572626041493}
   - component: {fileID: 8541124806486014728}
   - component: {fileID: 2489633284648578384}
+  - component: {fileID: 8075132728209917535}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -1471,6 +1472,21 @@ MonoBehaviour:
   btnSend: {fileID: 5491197736965394031}
   inputMessage: {fileID: 49720154748381072}
   txtChatLog: {fileID: 714116872193125532}
+--- !u!114 &8075132728209917535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617545498784692958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd8c5a3080a1454db31f4b73f031a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtChatLog: {fileID: 714116872193125532}
+  btnSend: {fileID: 5491197736965394031}
+  inputMessage: {fileID: 49720154748381072}
 --- !u!1 &4728532071332292496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1874,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7218391364016854353}
   m_HandleRect: {fileID: 8572212089773222931}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
