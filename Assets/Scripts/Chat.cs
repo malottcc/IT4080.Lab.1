@@ -10,7 +10,6 @@ namespace It4080 {
 
     public class Chat : NetworkBehaviour
     { 
-
         public const string MSG_SYSTEM = "SYSTEM";
 
         public class ChatMessage
@@ -20,34 +19,66 @@ namespace It4080 {
             public string message = null;
         }
 
-
+        public TMPro.TMP_Text txtChatLog;
         public Button btnSend;
         public TMPro.TMP_InputField inputMessage;
-        public TMPro.TMP_Text txtChatLog;
+
         public event Action<ChatMessage> sendMessage;
 
         private ulong clientId = 0;
 
-
         public void Start() {
-            btnSend.onClick.AddListener(BtnSendOnClick);
-            inputMessage.onSubmit.AddListener(InputMessageOnSubmit);
+
+            btnSend.onClick.AddListener(BtnSendOnClick); //ClientOnSendClicked
+            inputMessage.onSubmit.AddListener(InputMessageOnSubmit); //ClientOnInputSubmit
             txtChatLog.text = "Super Chat 64 Plus v2\n ";
         }
-
 
         public override void OnNetworkSpawn() {
             
             base.OnNetworkSpawn();
             enabled = true;
             SystemMessage("OnNetworkSpawn");
-            txtChatLog.text = "-- Start Chat Log --";
             clientId = NetworkManager.Singleton.LocalClientId;
+
+            if (IsHost)
+            {
+                SendChatMessageClientRpc("I am the host, Whoop Whoop!");
+            }
+            else
+            {
+                SendChatMessageServerRpc("I am a client, Yay!");
+            }
+
+            txtChatLog.text = "     -- Start Chat Log --";
+
         }
 
 
+        //------------------
+        //RPCs
+
+        [ClientRpc]
+        public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
+        {
+            DisplayMessage(message);
+            Debug.Log(message);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SendChatMessageServerRpc(string message, ServerRpcParams serverRpcParams = default)
+        {
+            Debug.Log($"Host got message: {message}");
+            SendChatMessageClientRpc(message);
+        }
+
+     
+
         private void DisplayMessage(ChatMessage msg)
         {
+
+            txtChatLog.text += $"\n{msg.message}";
+
             string from = msg.from;
             if(from == NetworkManager.Singleton.LocalClientId.ToString())
             {
@@ -64,23 +95,24 @@ namespace It4080 {
             
         }
 
+        //------------------------
+        //Events
 
         private void SendMessage()
         {
             ChatMessage msg = new ChatMessage();
             msg.message = inputMessage.text;
             inputMessage.text = "";
-            sendMessage.Invoke(msg);
+            //sendMessage.Invoke(msg.message);
+            SendChatMessageServerRpc(msg.message);
         }
 
-
-        private void InputMessageOnSubmit(string text)
+        private void BtnSendOnClick()
         {
             SendMessage();
         }
 
-
-        private void BtnSendOnClick()
+        private void InputMessageOnSubmit(string text)
         {
             SendMessage();
         }
@@ -99,6 +131,8 @@ namespace It4080 {
         // ----------------
         // Public
         // ----------------
+
+
         public void enable(bool should = true)
         {
             inputMessage.enabled = should;
