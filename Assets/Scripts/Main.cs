@@ -17,6 +17,8 @@ public class Main : NetworkBehaviour
 
     public ChatServer chatServer;
 
+    private Button btnStart;
+
 
     // ------------------------------------------------
     // Start is called before the first frame update
@@ -28,6 +30,21 @@ public class Main : NetworkBehaviour
         netSettings.startServer += NetSettingsOnServerStart;
         netSettings.startHost += NetSettingsOnHostStart;
         netSettings.startClient += NetSettingsOnClientStart;
+
+        btnStart = GameObject.Find("BtnStartGame").GetComponent<Button>();
+        btnStart.onClick.AddListener(BtnStartGameOnClick);
+
+    }
+
+    private void BtnStartGameOnClick()
+    {
+       StartGame();
+    }
+
+    private void StartGame()
+    {
+        Debug.Log("");
+        NetworkManager.SceneManager.LoadScene("Arena1", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     private void StartClient(IPAddress ip, ushort port)
