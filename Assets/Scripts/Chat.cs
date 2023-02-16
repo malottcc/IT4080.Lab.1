@@ -61,7 +61,7 @@ namespace It4080 {
         [ClientRpc]
         public void SendChatMessageClientRpc(string message, ClientRpcParams clientRpcParams = default)
         {
-            DisplayMessage(message);
+            //DisplayMessage(message);
             Debug.Log(message);
         }
 
@@ -103,8 +103,8 @@ namespace It4080 {
             ChatMessage msg = new ChatMessage();
             msg.message = inputMessage.text;
             inputMessage.text = "";
-            //sendMessage.Invoke(msg.message);
-            SendChatMessageServerRpc(msg.message);
+            sendMessage.Invoke(msg);
+            //SendChatMessageServerRpc(msg.message);
         }
 
         private void BtnSendOnClick()
