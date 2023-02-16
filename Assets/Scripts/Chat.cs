@@ -43,14 +43,14 @@ namespace It4080 {
 
             if (IsHost)
             {
-                SendChatMessageClientRpc("I am the host, Whoop Whoop!");
+                SendChatMessageClientRpc("I am the host, Whoop Whoop!", "MSG_SYSTEM");
             }
             else
             {
-                SendChatMessageServerRpc("I am a client, Yay!");
+                SendChatMessageServerRpc("I am a new Client, Sup!");
             }
 
-            txtChatLog.text = "     -- Start Chat Log --";
+            txtChatLog.text = "     -- Started Chat Log --";
 
         }
 
@@ -81,7 +81,7 @@ namespace It4080 {
         private void DisplayMessage(ChatMessage msg)
         {
 
-            txtChatLog.text += $"\n{msg.message}";
+            txtChatLog.text += $"\n";
 
             string from = msg.from;
             if(from == NetworkManager.Singleton.LocalClientId.ToString())
@@ -94,7 +94,7 @@ namespace It4080 {
                 txtChatLog.text += $"<<{from}>>{msg.message}\n";
             } else
             {
-                txtChatLog.text += $"[{from}]{msg.message}\n";
+                txtChatLog.text += $"[{from}]: {msg.message}\n";
             }
             
         }
