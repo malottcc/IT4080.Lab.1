@@ -15,7 +15,7 @@ public class Main : NetworkBehaviour
 
     public It4080.Chat chat;
 
-    public ChatServer chatServer;
+    //public ChatServer chatServer;
 
     private Button btnStart;
 

@@ -376,7 +376,7 @@ MonoBehaviour:
     PlayerPrefab: {fileID: 0}
     NetworkPrefabs:
     - Override: 0
-      Prefab: {fileID: 5418789970690340373, guid: e6d6952066a874ffe9f3e386e4fd0bdb, type: 3}
+      Prefab: {fileID: 3781990119735322063, guid: a5a80d818ed874a3a9db3f9fea4e18ab, type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
@@ -484,7 +484,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 'Start Game
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1086,7 +1088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netSettings: {fileID: 226006159}
   chat: {fileID: 1910498255}
-  chatServer: {fileID: 946281288}
 --- !u!4 &1048957041
 Transform:
   m_ObjectHideFlags: 0
