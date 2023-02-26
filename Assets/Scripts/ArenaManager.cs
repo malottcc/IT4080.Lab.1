@@ -36,6 +36,7 @@ public class ArenaManager : NetworkBehaviour
         }
     }
 
+    
     void Start()
     {
         
