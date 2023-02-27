@@ -7,6 +7,8 @@ using System;
 using UnityEngine.UI;
 using Unity.Netcode.Transports.UTP;
 
+
+
 public class Player1 : NetworkBehaviour
 {
     public float speed = 6.0f;
@@ -62,7 +64,7 @@ public class Player1 : NetworkBehaviour
             Color.black, Color.blue, Color.cyan,
             Color.gray, Color.green, Color.yellow };
     private int hostColorIndex = 0;
-    public NetworkVariable netPlayerColor = new NetworkVariable;
+    public NetworkVariable netPlayerColor = new NetworkVariable();
 
 
     public override void OnNetworkSpawn()
