@@ -57,7 +57,7 @@ public class Player1 : NetworkBehaviour
 
 
 
-    //------
+    //------------
     //Color
 
     /*private static Color[] availColors = new Color[] {
