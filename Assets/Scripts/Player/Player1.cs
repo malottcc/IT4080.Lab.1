@@ -64,7 +64,7 @@ public class Player1 : NetworkBehaviour
             Color.black, Color.blue, Color.cyan,
             Color.gray, Color.green, Color.yellow };
     private int hostColorIndex = 0;
-    public NetworkVariable netPlayerColor = new NetworkVariable();
+    public NetworkVariable<> netPlayerColor = new NetworkVariable<>();
 
 
     public override void OnNetworkSpawn()
