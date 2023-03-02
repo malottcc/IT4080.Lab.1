@@ -18,6 +18,10 @@ public class Player1 : NetworkBehaviour
 
     public Vector2 turn;
 
+    //--
+    //contorl
+
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
