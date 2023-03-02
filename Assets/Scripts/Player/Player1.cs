@@ -14,12 +14,9 @@ public class Player1 : NetworkBehaviour
     public float speed = 6.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
-    private Vector3 moveDirection = Vector3.zero;
+    public Vector3 moveDirection = Vector3.zero;
 
     public Vector2 turn;
-
-    //--
-    //contorl
 
 
     void Start()
@@ -27,7 +24,17 @@ public class Player1 : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+
+    //------------------------------
+    //Player Movement over Server
+    [ServerRpc(RequireOwnership = false)]
+    public void PlayerMovementServerRpc(Vector3 positionChange, ServerRpcParams serverRpcParams = default)
+    {
+        transform.Translate(positionChange);
+    }
+
+
+        void Update()
     {
         CharacterController controller = GetComponent<CharacterController>();
 
@@ -47,6 +54,8 @@ public class Player1 : NetworkBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
 
         controller.Move(moveDirection * Time.deltaTime);
+
+        //PlayerMovementServerRpc(moveDirection); 
 
         turn.x += Input.GetAxis("Mouse X");
         turn.y += Input.GetAxis("Mouse Y");
