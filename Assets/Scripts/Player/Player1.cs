@@ -39,7 +39,7 @@ public class Player1 : NetworkBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!IsHost)
+        if (IsOwner)
         {
             if (other.gameObject.CompareTag("PowerUp"))
             {
@@ -54,7 +54,7 @@ public class Player1 : NetworkBehaviour
 
     void Update()
     {
-        if (IsOwner)
+        if (!IsOwner)
         {
             OwnerUpdate();
         }
