@@ -11,9 +11,9 @@ using Unity.Netcode.Transports.UTP;
 
 public class Player1 : NetworkBehaviour
 {
-    public float speed = 6.0f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    public float speed = 10.0f;
+    public float jumpSpeed = 10.0f;
+    public float gravity = 18.0f;
     private Vector3 moveDirection = Vector3.zero;
 
     public Vector2 turn;
@@ -23,7 +23,24 @@ public class Player1 : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    //------------------------------
+    //Server Move Players
+    [ServerRpc] 
+    public void PlayerMovementServerRpc(Vector3 posChange, ServerRpcParams serverRpcParams = default)
+    { 
+        transform.Translate(posChange);
+        //transform.Rotate(rotChange); 
+    }
+
+    void Update() 
+    {
+        if (!IsOwner) 
+        { 
+            OwnerUpdate(); 
+        } 
+    }
+
+    void OwnerUpdate()
     {
         CharacterController controller = GetComponent<CharacterController>();
 
@@ -47,6 +64,8 @@ public class Player1 : NetworkBehaviour
         turn.x += Input.GetAxis("Mouse X");
         turn.y += Input.GetAxis("Mouse Y");
         transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
+
+        PlayerMovementServerRpc(moveDirection);
 
         /*if (Input.GetButtonDown("Fire1"))
         {
