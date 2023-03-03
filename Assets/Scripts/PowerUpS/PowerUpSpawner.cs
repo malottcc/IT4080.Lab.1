@@ -10,7 +10,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class PowerUpSpawner : NetworkBehaviour
 {
-    /*
+   /*
     public GameObject powerUp;
 
     public bool spawnOnLoad = true;

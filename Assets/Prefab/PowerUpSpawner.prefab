@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7303910375643404632}
   - component: {fileID: 6694569181181216391}
   - component: {fileID: 2783389994289492518}
+  - component: {fileID: 6244053871654080300}
   m_Layer: 0
   m_Name: PowerUpSpawner
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,9 +64,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cdd14dddd0744c685d9fa1d6da9b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnOnLoad: 1
-  refreshTime: 2
-  bonusPrefab: {fileID: 1969631980948934381, guid: f93a55f5a0afe46ddbf362a9e3b9fc90, type: 3}
+--- !u!114 &6244053871654080300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598416061771423846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1 &807385634398649572
 GameObject:
   m_ObjectHideFlags: 0

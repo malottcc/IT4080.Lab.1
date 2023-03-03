@@ -11,7 +11,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class Player1 : NetworkBehaviour
 {
-    public float speed = 10.0f;
+    public float speed = 18.0f;
     public float jumpSpeed = 10.0f;
     public float gravity = 18.0f;
     private Vector3 moveDirection = Vector3.zero;
@@ -20,24 +20,44 @@ public class Player1 : NetworkBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     //------------------------------
     //Server Move Players
-    [ServerRpc] 
-    public void PlayerMovementServerRpc(Vector3 posChange, ServerRpcParams serverRpcParams = default)
-    { 
-        transform.Translate(posChange);
-        //transform.Rotate(rotChange); 
+
+
+
+
+    //-------------------
+    //PowerUpTrigger
+
+    private void HostHandlePowerUpPickUp(Collider other)
+    {
+        Destroy(other.gameObject);
     }
 
-    void Update() 
+    public void OnTriggerEnter(Collider other)
     {
-        if (!IsOwner) 
-        { 
-            OwnerUpdate(); 
-        } 
+        if (!IsHost)
+        {
+            if (other.gameObject.CompareTag("PowerUp"))
+            {
+                HostHandlePowerUpPickUp(other);
+            }
+        }
+    }
+
+
+    //--------------
+    //Update
+
+    void Update()
+    {
+        if (IsOwner)
+        {
+            OwnerUpdate();
+        }
     }
 
     void OwnerUpdate()
@@ -64,19 +84,22 @@ public class Player1 : NetworkBehaviour
         turn.x += Input.GetAxis("Mouse X");
         turn.y += Input.GetAxis("Mouse Y");
         transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
-
-        PlayerMovementServerRpc(moveDirection);
-
-        /*if (Input.GetButtonDown("Fire1"))
-        {
-            RequestNextColorServerRpc();
-        }*/
-
     }
 
 
+}
 
-    //------
+
+    /*if (Input.GetButtonDown("Fire1"))
+    {
+        RequestNextColorServerRpc();
+    }*/
+
+
+
+
+
+    //----------
     //Color
 
     /*private static Color[] availColors = new Color[] {
@@ -115,4 +138,4 @@ public class Player1 : NetworkBehaviour
         Debug.Log($"host color index = {hostColorIndex} for {serverRpcParams.Receive.SenderClientId}");
         netPlayerColor.Value = availColors[hostColorIndex];
     }*/
-}
+
