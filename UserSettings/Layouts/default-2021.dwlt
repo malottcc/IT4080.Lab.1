@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 105
+  controlID: 70
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 106
+  controlID: 71
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 107
+  controlID: 65
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -298,8 +298,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 759
-    y: 73
+    x: -31241
+    y: -31970
     width: 1160
     height: 535
   m_ViewDataDictionary: {fileID: 0}
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.16177441, y: 0.2502171, z: -0.042408474, w: -0.95382094}
     speed: 2
-    m_Value: {x: -0.16168213, y: 0.25160325, z: -0.042643573, w: -0.9532766}
+    m_Value: {x: -0.1617744, y: 0.2502171, z: -0.042408474, w: -0.95382094}
   m_Size:
     m_Target: 161.62312
     speed: 2
@@ -636,8 +636,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 73
+    x: -32000
+    y: -31970
     width: 273
     height: 535
   m_ViewDataDictionary: {fileID: 0}
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d2dcffff
-      m_LastClickedID: -9006
-      m_ExpandedIDs: c0deffff00dfffff24fbffff2a620000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: aec8fffffcc8ffff0ce0ffff6ee1ffff62e3ffff24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -693,8 +693,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 274
-    y: 73
+    x: -31726
+    y: -31970
     width: 483
     height: 535
   m_ViewDataDictionary: {fileID: 0}
@@ -952,8 +952,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 629
+    x: -32000
+    y: -31414
     width: 1920
     height: 362
   m_ViewDataDictionary: {fileID: 0}
@@ -973,22 +973,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/StoreAssets/low poly pack/Rock
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/StoreAssets/low poly pack/Rock
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\malot\OneDrive\Documents\GitHub\IT4080.Lab.1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 127}
-    m_SelectedIDs: 3c680000
-    m_LastClickedID: 26684
-    m_ExpandedIDs: 00000000e4670000e6670000e8670000ea670000ec670000ee670000f0670000f2670000f4670000f6670000226800003a6800004a680000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: da680000
+    m_LastClickedID: 26842
+    m_ExpandedIDs: 0000000096680000986800009a6800009c6800009e680000a0680000a2680000a4680000a6680000a8680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1016,7 +1016,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e4670000e6670000e8670000ea670000ec670000ee670000f0670000f2670000f4670000f6670000
+    m_ExpandedIDs: 0000000096680000986800009a6800009c6800009e680000a0680000a2680000a4680000a6680000a8680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
