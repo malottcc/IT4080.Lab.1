@@ -23,7 +23,7 @@ public class ArenaManager : NetworkBehaviour
         Vector3 spawnPosition = new Vector3(0, 1, clientId * 5);
         Player1 playerSpawn = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
 
-        playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+        playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
         return playerSpawn;
     }
 

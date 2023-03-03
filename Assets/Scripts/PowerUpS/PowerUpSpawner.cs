@@ -10,15 +10,11 @@ using Unity.Netcode.Transports.UTP;
 
 public class PowerUpSpawner : NetworkBehaviour
 {
-   /*
+   
     public GameObject powerUp;
-
     public bool spawnOnLoad = true;
     public float refreshTime = 2f;
-
     private Transform spawnPointTransform;
-
-    private Rigidbody curPowerUp = null;
 
     public void Start()
     {
@@ -43,14 +39,12 @@ public class PowerUpSpawner : NetworkBehaviour
         }
     }
 
-    private void SpawnPowerUp()
+    private void SpawnPowerUp(ServerRpcParams rpcParams = default)
     {
         UnityEngine.Vector3 spawnPosition = transform.position;
         spawnPosition.y = 1;
-        Rigidbody power = Instantiate(powerUp, spawnPosition, UnityEngine.Quaternion.identity);
-        power.GetComponent<NetworkObject>().Spawn();
-
-        curPowerUp = power;
+        GameObject InstansiatedPowerUP = Instantiate(powerUp, spawnPosition, UnityEngine.Quaternion.identity);
+        InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
     }
-    */
+    
 }

@@ -64,6 +64,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cdd14dddd0744c685d9fa1d6da9b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUp: {fileID: 1969631980948934381, guid: f93a55f5a0afe46ddbf362a9e3b9fc90, type: 3}
+  spawnOnLoad: 1
+  refreshTime: 2
 --- !u!114 &6244053871654080300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +244,10 @@ PrefabInstance:
     - target: {fileID: 1969631980948934381, guid: f93a55f5a0afe46ddbf362a9e3b9fc90, type: 3}
       propertyPath: m_Name
       value: PowerUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969631980948934381, guid: f93a55f5a0afe46ddbf362a9e3b9fc90, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939407035125232482, guid: f93a55f5a0afe46ddbf362a9e3b9fc90, type: 3}
       propertyPath: GlobalObjectIdHash
