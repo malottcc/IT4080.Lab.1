@@ -2,18 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System.Numerics;
+using System;
+using UnityEngine.UI;
+using Unity.Netcode.Transports.UTP;
+
 
 public class PowerUpSpawner : NetworkBehaviour
 {
     /*
-    Rigidbody curPowerUp;
+    public GameObject powerUp;
+
     public bool spawnOnLoad = true;
     public float refreshTime = 2f;
 
-    public GameObject powerUp;
+    private Transform spawnPointTransform;
+
+    private Rigidbody curPowerUp = null;
+
+    public void Start()
+    {
+        spawnPointTransform = transform.Find("SpawnPoint");
+    }
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         if (IsServer)
         {
             HostOnNetworkSpawn();
@@ -30,12 +45,12 @@ public class PowerUpSpawner : NetworkBehaviour
 
     private void SpawnPowerUp()
     {
-        Vector3 spawnPosition = transform.position;
+        UnityEngine.Vector3 spawnPosition = transform.position;
         spawnPosition.y = 1;
-        Rigidbody power = Instantiate(powerUp, spawnPosition, Quaternion.identity);
+        Rigidbody power = Instantiate(powerUp, spawnPosition, UnityEngine.Quaternion.identity);
         power.GetComponent<NetworkObject>().Spawn();
+
         curPowerUp = power;
-    
     }
     */
 }
