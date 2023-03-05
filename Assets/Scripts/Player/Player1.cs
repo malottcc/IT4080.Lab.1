@@ -12,8 +12,8 @@ using Unity.Netcode.Transports.UTP;
 public class Player1 : NetworkBehaviour
 {
     public float speed = 50.0f;
-    public float jumpSpeed = 10.0f;
-    public float gravity = 500.0f;
+    public float jumpSpeed = 9.0f;
+    public float gravity = 22.0f;
     private Vector3 moveDirection = Vector3.zero;
 
     public Vector2 turn;

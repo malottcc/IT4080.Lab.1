@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2946643003741330743}
   - component: {fileID: 2639606874010769802}
   - component: {fileID: 4818429016833065856}
-  - component: {fileID: 1481822687961957562}
+  - component: {fileID: 1991930525939742472}
   m_Layer: 0
   m_Name: PlayerModelNew
   m_TagString: Untagged
@@ -274,9 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6451321fb3920471397018efa374b8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
-  jumpSpeed: 10
-  gravity: 20
+  speed: 100
+  jumpSpeed: 9
+  gravity: 22
   turn: {x: 0, y: 0}
 --- !u!114 &4818429016833065856
 MonoBehaviour:
@@ -304,7 +304,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &1481822687961957562
+--- !u!114 &1991930525939742472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
