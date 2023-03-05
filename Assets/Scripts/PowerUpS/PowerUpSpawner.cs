@@ -18,13 +18,11 @@ public class PowerUpSpawner : NetworkBehaviour
 
     public void Start()
     {
-        spawnPointTransform = transform.Find("SpawnPoint");
+        spawnPointTransform = transform.Find("PowerUpSpawnPoint");
     }
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
-
         if (IsServer)
         {
             HostOnNetworkSpawn();
@@ -35,14 +33,15 @@ public class PowerUpSpawner : NetworkBehaviour
     {
         if (powerUp != null && spawnOnLoad)
         {
-            SpawnPowerUp();
+            SpawnPowerUpServerRpc();
         }
     }
 
-    private void SpawnPowerUp(ServerRpcParams rpcParams = default)
+    [ServerRpc]
+    private void SpawnPowerUpServerRpc(ServerRpcParams rpcParams = default)
     {
         UnityEngine.Vector3 spawnPosition = transform.position;
-        spawnPosition.y = 1;
+        spawnPosition.y = 3;
         GameObject InstansiatedPowerUP = Instantiate(powerUp, spawnPosition, UnityEngine.Quaternion.identity);
         InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
     }
