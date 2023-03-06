@@ -10,15 +10,15 @@ using Unity.Netcode.Transports.UTP;
 
 public class PowerUpSpawner : NetworkBehaviour
 {
-   
+
     public GameObject powerUp;
     public bool spawnOnLoad = true;
     public float refreshTime = 2f;
-    private Transform spawnPointTransform;
+    public UnityEngine.Vector3 SpawnPointValue; 
 
     public void Start()
     {
-        spawnPointTransform = transform.Find("PowerUpSpawnPoint");
+        SpawnPointValue = gameObject.PowerUpSpawnPoint.transform.position;
     }
 
     public override void OnNetworkSpawn()
@@ -33,16 +33,16 @@ public class PowerUpSpawner : NetworkBehaviour
     {
         if (powerUp != null && spawnOnLoad)
         {
-            SpawnPowerUpServerRpc();
+            SpawnPowerUpServerRpc(powerUp, SpawnPointValue);
         }
     }
 
     [ServerRpc]
-    private void SpawnPowerUpServerRpc(ServerRpcParams rpcParams = default)
+    private void SpawnPowerUpServerRpc(GameObject powerup, UnityEngine.Vector3 SpawnPointValue, ServerRpcParams rpcParams = default)
     {
-        UnityEngine.Vector3 spawnPosition = transform.position;
+        UnityEngine.Vector3 spawnPosition = SpawnPointValue;
         spawnPosition.y = 3;
-        GameObject InstansiatedPowerUP = Instantiate(powerUp, spawnPosition, UnityEngine.Quaternion.identity);
+        GameObject InstansiatedPowerUP = Instantiate(powerup, spawnPosition, UnityEngine.Quaternion.identity);
         InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
     }
     
