@@ -14,11 +14,11 @@ public class PowerUpSpawner : NetworkBehaviour
     public GameObject powerUp;
     public bool spawnOnLoad = true;
     public float refreshTime = 2f;
-    public UnityEngine.Vector3 SpawnPointValue; 
+    public Transform SpawnPointValue; 
 
     public void Start()
     {
-        SpawnPointValue = gameObject.PowerUpSpawnPoint.transform.position;
+        SpawnPointValue = PowerUpSpawnPoint.position;
     }
 
     public override void OnNetworkSpawn()
@@ -38,7 +38,7 @@ public class PowerUpSpawner : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SpawnPowerUpServerRpc(GameObject powerup, UnityEngine.Vector3 SpawnPointValue, ServerRpcParams rpcParams = default)
+    private void SpawnPowerUpServerRpc(GameObject powerup, Transform SpawnPointValue, ServerRpcParams rpcParams = default)
     {
         UnityEngine.Vector3 spawnPosition = SpawnPointValue;
         spawnPosition.y = 3;
