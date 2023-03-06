@@ -10,6 +10,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class PowerUpSpawner : NetworkBehaviour
 {
+/*
 
     public GameObject powerUp;
     public bool spawnOnLoad = true;
@@ -18,7 +19,7 @@ public class PowerUpSpawner : NetworkBehaviour
 
     public void Start()
     {
-        SpawnPointValue = PowerUpSpawnPoint.position;
+        SpawnPointValue = transform.position;
     }
 
     public override void OnNetworkSpawn()
@@ -38,12 +39,11 @@ public class PowerUpSpawner : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void SpawnPowerUpServerRpc(GameObject powerup, Transform SpawnPointValue, ServerRpcParams rpcParams = default)
-    {
-        UnityEngine.Vector3 spawnPosition = SpawnPointValue;
-        spawnPosition.y = 3;
+    private void SpawnPowerUpServerRpc(GameObject powerup, Transform spawnpointvalue, ServerRpcParams rpcParams = default)
+    { 
         GameObject InstansiatedPowerUP = Instantiate(powerup, spawnPosition, UnityEngine.Quaternion.identity);
         InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
     }
+*/
     
 }
