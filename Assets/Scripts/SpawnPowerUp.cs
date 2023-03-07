@@ -12,6 +12,7 @@ using Unity.Netcode.Transports.UTP;
 public class SpawnPowerUp : NetworkBehaviour
 {
     public GameObject powerUp;
+    public GameObject curSpawnPowerUp = null;
     public UnityEngine.Vector3 SpawnPosition;
     public bool spawnOnLoad = true;
     public float refreshTime = 2f;
@@ -34,7 +35,7 @@ public class SpawnPowerUp : NetworkBehaviour
                     timeRemaining = 0;
                     SpawnPowerUpServerRpc();
                 }
-            } else if (powerUp == null)
+            } else if (curSpawnPowerUp == null)
             {
                 timeRemaining = refreshTime;
             }
@@ -62,6 +63,7 @@ public class SpawnPowerUp : NetworkBehaviour
     {
         GameObject InstansiatedPowerUP = Instantiate(powerUp, SpawnPosition, UnityEngine.Quaternion.identity);
         InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
+        curSpawnPowerUp = InstansiatedPowerUP;
     }
 
 }
