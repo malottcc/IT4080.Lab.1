@@ -21,7 +21,10 @@ public class BulletSpawner: NetworkBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            FireServerRpc(InistialTransform.position, InistialTransform.rotation);
+            if (IsOwner)
+            {
+                FireServerRpc(InistialTransform.position, InistialTransform.rotation);
+            }
         }
     }
     
