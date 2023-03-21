@@ -27,7 +27,7 @@ public class BulletSpawner: NetworkBehaviour
             }
         }
     }
-    
+
 
     [ServerRpc]
     public void FireServerRpc(Vector3 position, Quaternion rotation, ServerRpcParams rpcParams = default)

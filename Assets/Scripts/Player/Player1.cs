@@ -27,26 +27,26 @@ public class Player1 : NetworkBehaviour
     //-------------------
     //PowerUpTrigger
 
-    private void HostHandlePowerUpPickUp(Collider other)
+    private void HostHandlePowerUpPickUp(Collider power)
     {
-        Destroy(other.gameObject);
+        Destroy(power.gameObject);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider power)
     {
         if (IsOwner)
         {
-            if (other.gameObject.CompareTag("PowerUp"))
+            if (power.gameObject.CompareTag("PowerUp"))
             {
-                HostHandlePowerUpPickUp(other);
+                HostHandlePowerUpPickUp(power);
             }
         }
 
         if (!IsOwner)
         {
-            if (other.gameObject.CompareTag("PowerUp"))
+            if (power.gameObject.CompareTag("PowerUp"))
             {
-                HostHandlePowerUpPickUp(other);
+                HostHandlePowerUpPickUp(power);
             }
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System.Diagnostics;
 
 public class Bullet : NetworkBehaviour
 {
@@ -15,6 +16,14 @@ public class Bullet : NetworkBehaviour
 
         GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 }
