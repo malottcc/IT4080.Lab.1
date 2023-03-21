@@ -21,7 +21,19 @@ public class Bullet : NetworkBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+           
             Destroy(gameObject);
+
+            if (IsOwner)
+            {
+                
+
+            }
+
+            if (!IsOwner)
+            {
+
+            }
         }
     }
 

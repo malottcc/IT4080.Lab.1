@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023733822988941183}
   m_LocalRotation: {x: -0, y: 0.07630488, z: -0, w: 0.9970845}
-  m_LocalPosition: {x: 0.599, y: 1.01, z: 3.333}
+  m_LocalPosition: {x: 0.608, y: 1.01, z: 3.392}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6891268399276500664
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2946643003741330743}
   - component: {fileID: 2639606874010769802}
   - component: {fileID: 1991930525939742472}
-  - component: {fileID: 3445576440427492609}
+  - component: {fileID: 5811979416984117838}
   m_Layer: 0
   m_Name: PlayerModelNew
   m_TagString: Player
@@ -167,10 +167,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.54802346
+  m_Radius: 0.37833595
   m_Height: 1.7758527
   m_Direction: 1
-  m_Center: {x: 0.16666824, y: 0.86380243, z: 2.0428257}
+  m_Center: {x: 0.1666682, y: 0.86380243, z: 1.7787523}
 --- !u!114 &4761105230738822956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5829063071458301946, guid: a75e9dd9db40b4446b4b6a8b505e86e0, type: 3}
   InistialTransform: {fileID: 4710467601269719546}
---- !u!114 &3445576440427492609
+--- !u!114 &5811979416984117838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,14 +303,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
-  SyncPositionY: 0
+  SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 0
-  SyncRotAngleY: 0
-  SyncRotAngleZ: 0
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01

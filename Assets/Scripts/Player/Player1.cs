@@ -21,7 +21,11 @@ public class Player1 : NetworkBehaviour
     //------------------------------
     //Server Move Players
 
-    
+    [ServerRpc]
+    public void PlayerMovementServerRpc(Vector3 posChange, ServerRpcParams rpcParams = default)
+    {
+        transform.Translate(posChange);
+    }
 
 
     //-------------------
@@ -64,6 +68,11 @@ public class Player1 : NetworkBehaviour
 
         Vector3 moveDirection = new Vector3(xInput, 0, yInput).normalized;
         transform.Translate(speed * Time.deltaTime * moveDirection);
+
+        if (IsOwner)
+        {
+            //PlayerMovementServerRpc(moveDirection);
+        }
 
     }
 
