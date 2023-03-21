@@ -11,12 +11,7 @@ using Unity.Netcode.Transports.UTP;
 
 public class Player1 : NetworkBehaviour
 {
-    public float speed = 8.0f;
-    public float jumpSpeed = 3.0f;
-    public float gravity = 10.0f;
-    private Vector3 moveDirection = Vector3.zero;
-
-    public Vector2 turn;
+    public float speed = 6.0f;
 
     void Start()
     {
@@ -62,29 +57,14 @@ public class Player1 : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner)
-        {
-            OwnerUpdate();
-        }
-    }
+        if (!IsOwner) return;
 
-    void OwnerUpdate()
-    {
-        //Move
-        CharacterController controller = GetComponent<CharacterController>();
-        if (controller.isGrounded)
-        {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            if (Input.GetButton("Jump"))
-                moveDirection.y = jumpSpeed;
-        }
-        moveDirection.y -= gravity * Time.deltaTime;
-        controller.Move(moveDirection * Time.deltaTime * speed);
-        turn.x += Input.GetAxis("Mouse X");
-        turn.y += Input.GetAxis("Mouse Y");
-        transform.localRotation = Quaternion.Euler(-turn.y, turn.x, 0);
-    }
+        float xInput = Input.GetAxis("Horizontal");
+        float yInput = Input.GetAxis("Vertical");
 
+        Vector3 moveDirection = new Vector3(xInput, 0, yInput).normalized;
+        transform.Translate(speed * Time.deltaTime * moveDirection);
+
+    }
 
 }
