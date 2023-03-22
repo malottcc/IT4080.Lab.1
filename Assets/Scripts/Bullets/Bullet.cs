@@ -12,12 +12,17 @@ namespace It4080
 {
     public class Bullet : NetworkBehaviour
     {
+
         [SerializeField]
         private float speed = 20f;
-        public int score = 0;
-        public int currentScoreInt = 0;
-        public string currentScoreString = "";
-        public It4080.ScoreChange scorechange;
+        public ScoreChange ScoreChange;
+
+
+
+        public void Start()
+        {
+            
+        }
 
         public override void OnNetworkSpawn()
         {
@@ -26,16 +31,13 @@ namespace It4080
             GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        public void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
                 Destroy(gameObject);
-                currentScoreInt = currentScoreInt + 1;
-                currentScoreString = currentScoreInt.ToString();
-                scorechange.ChangeTeamScoreServerRpc(currentScoreString);
+                Debug.Log("Fuck");
             }
         }
-
     }
 }

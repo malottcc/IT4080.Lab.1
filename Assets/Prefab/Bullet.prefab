@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5829063071458301944}
   - component: {fileID: 5829063071458301947}
   - component: {fileID: 3874490640615336142}
-  - component: {fileID: 8435224632008868915}
+  - component: {fileID: 807289905469205900}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -159,7 +159,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &8435224632008868915
+--- !u!114 &807289905469205900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -14,6 +14,7 @@ namespace It4080
     public class Player1 : NetworkBehaviour
     {
         public float speed = 6.0f;
+        public It4080.ScoreChange scorechange;
 
         void Start()
         {
@@ -38,25 +39,24 @@ namespace It4080
             Destroy(power.gameObject);
         }
 
-        public void OnTriggerEnter(Collider power)
+        public void OnTriggerEnter(Collider collision)
         {
             if (IsOwner)
             {
-                if (power.gameObject.CompareTag("PowerUp"))
+                if (collision.gameObject.CompareTag("PowerUp"))
                 {
-                    HostHandlePowerUpPickUp(power);
+                    HostHandlePowerUpPickUp(collision);
                 }
             }
 
             if (!IsOwner)
             {
-                if (power.gameObject.CompareTag("PowerUp"))
+                if (collision.gameObject.CompareTag("PowerUp"))
                 {
-                    HostHandlePowerUpPickUp(power);
+                    HostHandlePowerUpPickUp(collision);
                 }
             }
         }
-
 
         //--------------
         //Update
