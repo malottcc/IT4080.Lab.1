@@ -1,79 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
+using System.Net;
 using Unity.Netcode;
 using System;
 using UnityEngine.UI;
 using Unity.Netcode.Transports.UTP;
+using TMPro;
 
 
-
-public class Player1 : NetworkBehaviour
+namespace It4080
 {
-    public float speed = 6.0f;
-
-    void Start()
+    public class Player1 : NetworkBehaviour
     {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        public float speed = 6.0f;
 
-    //------------------------------
-    //Server Move Players
-
-    [ServerRpc]
-    public void PlayerMovementServerRpc(Vector3 posChange, ServerRpcParams rpcParams = default)
-    {
-        transform.Translate(posChange);
-    }
-
-
-    //-------------------
-    //PowerUpTrigger
-
-    private void HostHandlePowerUpPickUp(Collider power)
-    {
-        Destroy(power.gameObject);
-    }
-
-    public void OnTriggerEnter(Collider power)
-    {
-        if (IsOwner)
+        void Start()
         {
-            if (power.gameObject.CompareTag("PowerUp"))
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        //------------------------------
+        //Server Move Players
+
+        [ServerRpc]
+        public void PlayerMovementServerRpc(Vector3 posChange, ServerRpcParams rpcParams = default)
+        {
+            transform.Translate(posChange);
+        }
+
+
+        //-------------------
+        //PowerUpTrigger
+
+        private void HostHandlePowerUpPickUp(Collider power)
+        {
+            Destroy(power.gameObject);
+        }
+
+        public void OnTriggerEnter(Collider power)
+        {
+            if (IsOwner)
             {
-                HostHandlePowerUpPickUp(power);
+                if (power.gameObject.CompareTag("PowerUp"))
+                {
+                    HostHandlePowerUpPickUp(power);
+                }
+            }
+
+            if (!IsOwner)
+            {
+                if (power.gameObject.CompareTag("PowerUp"))
+                {
+                    HostHandlePowerUpPickUp(power);
+                }
             }
         }
 
-        if (!IsOwner)
+
+        //--------------
+        //Update
+
+        void Update()
         {
-            if (power.gameObject.CompareTag("PowerUp"))
+            if (!IsOwner) return;
+
+            float xInput = Input.GetAxis("Horizontal");
+            float yInput = Input.GetAxis("Vertical");
+
+            Vector3 moveDirection = new Vector3(xInput, 0, yInput).normalized;
+            transform.Translate(speed * Time.deltaTime * moveDirection);
+
+            if (IsOwner)
             {
-                HostHandlePowerUpPickUp(power);
+                //PlayerMovementServerRpc(moveDirection);
             }
-        }
-    }
 
-
-    //--------------
-    //Update
-
-    void Update()
-    {
-        if (!IsOwner) return;
-
-        float xInput = Input.GetAxis("Horizontal");
-        float yInput = Input.GetAxis("Vertical");
-
-        Vector3 moveDirection = new Vector3(xInput, 0, yInput).normalized;
-        transform.Translate(speed * Time.deltaTime * moveDirection);
-
-        if (IsOwner)
-        {
-            //PlayerMovementServerRpc(moveDirection);
         }
 
     }
-
 }

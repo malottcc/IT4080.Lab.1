@@ -1,69 +1,72 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
-using Unity.Netcode;
 using System.Net;
+using Unity.Netcode;
 using System;
 using UnityEngine.UI;
 using Unity.Netcode.Transports.UTP;
+using TMPro;
 
-
-public class SpawnPowerUp : NetworkBehaviour
+namespace It4080
 {
-    public GameObject powerUp;
-    public GameObject curSpawnPowerUp = null;
-    public UnityEngine.Vector3 SpawnPosition;
-    public bool spawnOnLoad = true;
-    public float refreshTime = 2f;
-    public float timeRemaining = 0f;
-
-    public void Start()
+    public class SpawnPowerUp : NetworkBehaviour
     {
-        SpawnPosition = gameObject.transform.position;
-    }
+        public GameObject powerUp;
+        public GameObject curSpawnPowerUp = null;
+        public UnityEngine.Vector3 SpawnPosition;
+        public bool spawnOnLoad = true;
+        public float refreshTime = 2f;
+        public float timeRemaining = 0f;
 
-    void Update()
-    {
-        if (IsServer)
+        public void Start()
         {
-            if (timeRemaining > 0f)
+            SpawnPosition = gameObject.transform.position;
+        }
+
+        void Update()
+        {
+            if (IsServer)
             {
-                timeRemaining -= Time.deltaTime;
-                if (timeRemaining <= 0f)
+                if (timeRemaining > 0f)
                 {
-                    timeRemaining = 0;
-                    SpawnPowerUpServerRpc();
+                    timeRemaining -= Time.deltaTime;
+                    if (timeRemaining <= 0f)
+                    {
+                        timeRemaining = 0;
+                        SpawnPowerUpServerRpc();
+                    }
                 }
-            } else if (curSpawnPowerUp == null)
-            {
-                timeRemaining = refreshTime;
+                else if (curSpawnPowerUp == null)
+                {
+                    timeRemaining = refreshTime;
+                }
             }
         }
-    }
 
-    public override void OnNetworkSpawn()
-    {
-        if (IsServer)
+        public override void OnNetworkSpawn()
         {
-            HostOnNetworkSpawn();
+            if (IsServer)
+            {
+                HostOnNetworkSpawn();
+            }
         }
-    }
 
-    private void HostOnNetworkSpawn()
-    {
-        if (powerUp != null && spawnOnLoad)
+        private void HostOnNetworkSpawn()
         {
-            SpawnPowerUpServerRpc();
+            if (powerUp != null && spawnOnLoad)
+            {
+                SpawnPowerUpServerRpc();
+            }
         }
-    }
 
-    [ServerRpc]
-    public void SpawnPowerUpServerRpc(ServerRpcParams rpcParams = default)
-    {
-        GameObject InstansiatedPowerUP = Instantiate(powerUp, SpawnPosition, UnityEngine.Quaternion.identity);
-        InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
-        curSpawnPowerUp = InstansiatedPowerUP;
-    }
+        [ServerRpc]
+        public void SpawnPowerUpServerRpc(ServerRpcParams rpcParams = default)
+        {
+            GameObject InstansiatedPowerUP = Instantiate(powerUp, SpawnPosition, UnityEngine.Quaternion.identity);
+            InstansiatedPowerUP.GetComponent<NetworkObject>().SpawnWithOwnership(rpcParams.Receive.SenderClientId);
+            curSpawnPowerUp = InstansiatedPowerUP;
+        }
 
+    }
 }

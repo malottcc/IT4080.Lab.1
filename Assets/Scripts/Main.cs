@@ -6,18 +6,16 @@ using Unity.Netcode;
 using System;
 using UnityEngine.UI;
 using Unity.Netcode.Transports.UTP;
+using TMPro;
 
 
 public class Main : NetworkBehaviour
 {
 
     public It4080.NetworkSettings netSettings;
-
     public It4080.Chat chat;
-
-    //public ChatServer chatServer;
-
     private Button btnStart;
+    //public ChatServer chatServer;
 
     // ------------------------------------------------
     // Start is called before the first frame update

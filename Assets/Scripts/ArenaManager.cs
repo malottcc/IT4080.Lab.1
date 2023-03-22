@@ -1,38 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net;
 using Unity.Netcode;
+using System;
+using UnityEngine.UI;
+using Unity.Netcode.Transports.UTP;
+using TMPro;
 
-public class ArenaManager : NetworkBehaviour
+
+namespace It4080
 {
-
-    public Player1 playerPrefab;
-
-    public override void OnNetworkSpawn()
+    public class ArenaManager : NetworkBehaviour
     {
-        base.OnNetworkSpawn();
 
-        if (IsServer)
+        public Player1 playerPrefab;
+
+        public override void OnNetworkSpawn()
         {
-            SpawnAllPlayers();
+            base.OnNetworkSpawn();
+
+            if (IsServer)
+            {
+                SpawnAllPlayers();
+            }
         }
-    }
 
 
-    private void SpawnAllPlayers()
-    {
-        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        private void SpawnAllPlayers()
         {
-            SpawnPlayerForClient(clientId);
+            foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                SpawnPlayerForClient(clientId);
+            }
         }
-    }
 
-    private Player1 SpawnPlayerForClient(ulong clientId)
-    {
-        Vector3 spawnPosition = new Vector3(0, 1, clientId * 5);
-        Player1 playerSpawn = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-        playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-        return playerSpawn;
-    }
+        private Player1 SpawnPlayerForClient(ulong clientId)
+        {
+            Vector3 spawnPosition = new Vector3(0, 1, clientId * 5);
+            Player1 playerSpawn = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+            playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            return playerSpawn;
+        }
 
+    }
 }

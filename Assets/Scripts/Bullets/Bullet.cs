@@ -1,41 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net;
 using Unity.Netcode;
-using System.Diagnostics;
+using System;
+using UnityEngine.UI;
+using Unity.Netcode.Transports.UTP;
+using TMPro;
 
-public class Bullet : NetworkBehaviour
+namespace It4080
 {
-    [SerializeField]
-
-    private float speed = 20f;
-
-    public override void OnNetworkSpawn()
+    public class Bullet : NetworkBehaviour
     {
-        base.OnNetworkSpawn();
+        [SerializeField]
+        private float speed = 20f;
+        public int score = 0;
+        public int currentScoreInt = 0;
+        public string currentScoreString = "";
+        public It4080.ScoreChange scorechange;
 
-        GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        public override void OnNetworkSpawn()
         {
-           
-            Destroy(gameObject);
+            base.OnNetworkSpawn();
 
-            if (IsOwner)
+            GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
             {
-                
-
-            }
-
-            if (!IsOwner)
-            {
-
+                Destroy(gameObject);
+                currentScoreInt = currentScoreInt + 1;
+                currentScoreString = currentScoreInt.ToString();
+                scorechange.ChangeTeamScoreServerRpc(currentScoreString);
             }
         }
+
     }
-
-
 }
