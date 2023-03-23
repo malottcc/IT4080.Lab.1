@@ -15,10 +15,9 @@ namespace It4080
 
         [SerializeField]
         private float speed = 20f;
-        public ScoreChange ScoreChange;
+        ScoreChange scorechange = new ScoreChange();
 
-
-
+       
         public void Start()
         {
             
@@ -36,7 +35,8 @@ namespace It4080
             if (collision.gameObject.CompareTag("Player"))
             {
                 Destroy(gameObject);
-                Debug.Log("Fuck");
+                Debug.Log("Adenture");
+                scorechange.SetScore();
             }
         }
     }

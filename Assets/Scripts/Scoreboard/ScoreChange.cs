@@ -13,16 +13,32 @@ namespace It4080
     public class ScoreChange : NetworkBehaviour
     {
         public TMP_Text worldText;
+        public string changeScore;
+        public int score = 0;
 
-        public void Start()
+
+        void Start()
         {
-            worldText.text = "Score: 0";
+            worldText.text = "Score: " + score;
         }
 
         public void SetScore()
         {
-            Debug.Log("Hell");
-            worldText.text = "Score: 1";
+            AddScore();
+            Debug.Log("Time");
+            changeScore = score.ToString();
+            Debug.Log(changeScore);
+            //UpdateScore(changeScore);
+        }
+
+        public void AddScore()
+        {
+            score = score + 1;
+        }
+
+        public void UpdateScore(string newScore)
+        {
+            worldText.text = "Score: " + newScore;
         }
 
         [ServerRpc]
