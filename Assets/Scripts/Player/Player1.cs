@@ -15,6 +15,7 @@ namespace It4080
     {
         public float speed = 6.0f;
         public It4080.ScoreChange scorechange;
+        private Camera camera;
 
         void Start()
         {
@@ -57,6 +58,10 @@ namespace It4080
                 }
             }
         }
+
+        //OnCollisionEnter
+
+        
 
         //--------------
         //Update
