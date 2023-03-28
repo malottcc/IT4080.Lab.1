@@ -15,7 +15,7 @@ namespace It4080
 
         [SerializeField]
         private float speed = 20f;
-        ScoreChange scorechange = new ScoreChange();
+        public GameObject bullet;
 
        
         public void Start()
@@ -28,16 +28,6 @@ namespace It4080
             base.OnNetworkSpawn();
 
             GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
-        }
-
-        public void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                Destroy(gameObject);
-                Debug.Log("Adenture");
-                scorechange.SetScore();
-            }
         }
     }
 }

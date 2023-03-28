@@ -15,7 +15,7 @@ namespace It4080
     {
         [SerializeField]
 
-        private GameObject bullet;
+        public GameObject bullet;
 
         [SerializeField]
 
@@ -32,8 +32,7 @@ namespace It4080
             }
         }
 
-
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         public void FireServerRpc(Vector3 position, Quaternion rotation, ServerRpcParams rpcParams = default)
         {
             GameObject InstansiatedBullet = Instantiate(bullet, position, rotation);
