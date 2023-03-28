@@ -32,7 +32,13 @@ namespace It4080
             }
         }
 
-        [ServerRpc(RequireOwnership = false)]
+        void OnCollisionEnter(Collision collision)
+        {
+            
+        }
+
+
+        [ServerRpc]
         public void FireServerRpc(Vector3 position, Quaternion rotation, ServerRpcParams rpcParams = default)
         {
             GameObject InstansiatedBullet = Instantiate(bullet, position, rotation);

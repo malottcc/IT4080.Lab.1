@@ -17,10 +17,9 @@ namespace It4080
         private float speed = 20f;
         public GameObject curBullet;
 
-       
-        public void Start()
+        void OnCollisionEnter(Collision collision)
         {
-            
+
         }
 
         public override void OnNetworkSpawn()

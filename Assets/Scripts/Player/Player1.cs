@@ -19,11 +19,9 @@ namespace It4080
 
         public NetworkVariable<int> networkScore = new NetworkVariable<int>(10);
 
-        public BulletSpawner bulletSpawner;
-
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
         }
 
         //-----------------------------
@@ -52,6 +50,10 @@ namespace It4080
         {
             camera = transform.Find("Camera").GetComponent<Camera>();
             camera.enabled = IsOwner;
+
+            networkScore.OnValueChanged += OnScoreChanged;
+
+            UpdateScoreDisplay();
         }
 
         //------------------------------
@@ -86,9 +88,8 @@ namespace It4080
         //---------------------------------
         //OnCollisionEnter Score
 
-        void OnCollisionEnter(Collision collision)
+       void OnCollisionEnter(Collision collision)
         {
-
             if (IsServer)
             {
                 if (collision.gameObject.CompareTag("Bullet"))
@@ -96,22 +97,19 @@ namespace It4080
                     ServerHandleBulletCollision(collision.gameObject);
                 }
             }
-                
         }
 
         private void ServerHandleBulletCollision(GameObject destroyBullet)
         {
-
-            Bullet getBullet = destroyBullet.GetComponent<CurBullet>();
+            Debug.Log("Hit");
+            Bullet getBullet = destroyBullet.GetComponent<Bullet>();
             networkScore.Value -= 1;
-
-            /*
-            ulong owner = bullet.GetComponent<NetworkObject>().OwnerClientId;
-            Player1 otherPlayer = NetworkManager.Singleton.ConnectedClients(owner).PlayerObject.Getcomponent<Player1>();
-            otherPlayer.networkScore.Value += 1;
-            */
-
             Destroy(destroyBullet);
+        }
+
+        private void OnScoreChanged(int prevScore, int curScore)
+        {
+            UpdateScoreDisplay();
         }
 
         private void UpdateScoreDisplay()
