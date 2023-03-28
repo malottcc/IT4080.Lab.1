@@ -15,7 +15,7 @@ namespace It4080
 
         [SerializeField]
         private float speed = 20f;
-        public GameObject bullet;
+        public GameObject curBullet;
 
        
         public void Start()

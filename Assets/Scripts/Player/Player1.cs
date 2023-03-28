@@ -94,16 +94,15 @@ namespace It4080
                 if (collision.gameObject.CompareTag("Bullet"))
                 {
                     ServerHandleBulletCollision(collision.gameObject);
-                    Destroy(collision.gameObject);
                 }
             }
                 
         }
 
-        private void ServerHandleBulletCollision(GameObject curBullet)
+        private void ServerHandleBulletCollision(GameObject destroyBullet)
         {
 
-            getBullet = GetComponent<bullet>();
+            Bullet getBullet = destroyBullet.GetComponent<CurBullet>();
             networkScore.Value -= 1;
 
             /*
@@ -112,7 +111,7 @@ namespace It4080
             otherPlayer.networkScore.Value += 1;
             */
 
-            Destroy(curBullet);
+            Destroy(destroyBullet);
         }
 
         private void UpdateScoreDisplay()
