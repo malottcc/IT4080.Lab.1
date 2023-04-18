@@ -82,7 +82,7 @@ public class Main : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += HostOnClientDisconnected;
 
 
-        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.StartHost();
         //netSettings.hide();
         Debug.Log("started server");
     }
